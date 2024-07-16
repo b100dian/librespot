@@ -4,7 +4,7 @@ Release:        0
 Summary:        librespot is an open source client library for Spotify.
 License:        MIT
 URL:            https://github.com/librespot-org/librespot
-Source0:        https://github.com/librespot-org/librespot/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/librespot-org/librespot/archive/refs/tags/v0.4.2.tar.gz#/%{name}-0.4.2.tar.gz
 
 Source100:      vendor.tar.xz
 
