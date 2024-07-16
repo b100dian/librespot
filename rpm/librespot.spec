@@ -4,7 +4,7 @@ Release:        0
 Summary:        librespot is an open source client library for Spotify.
 License:        MIT
 URL:            https://github.com/librespot-org/librespot
-Source0:        https://github.com/librespot-org/librespot/archive/refs/tags/v0.4.2.tar.gz#/%{name}-0.4.2.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 Source100:      vendor.tar.xz
 
@@ -22,7 +22,7 @@ Note: librespot only works with Spotify Premium
 
 %define BUILD_DIR "$PWD"/upstream/target
 %prep
-%setup -q -n %{name}-%{version}/upstream
+%setup a1 -q -n %{name}-%{version}/upstream
 
 %ifarch %arm32
 %define SB2_TARGET armv7-unknown-linux-gnueabihf
@@ -48,9 +48,6 @@ replace-with = "vendored-sources"
 [source.vendored-sources]
 directory = "vendor"
 EOF
-
-# dependencies from plietar (github) also in local form
-tar -xzf %SOURCE200
 
 # use our offline registry
 export CARGO_HOME="%{cargo_home}"
@@ -105,7 +102,7 @@ mkdir -p %{buildroot}/%{_bindir}
 install %{BUILD_DIR}/%{SB2_TARGET}/release/librespot %{buildroot}/%{_bindir}/librespot
 
 mkdir -p %{buildroot}/%{_sysconfdir}/pulse/xpolicy.conf.d/
-cp -r ./sailfish/etc/* %{buildroot}/%{_sysconfdir}/
+cp -r ../sailfish/etc/* %{buildroot}/%{_sysconfdir}/
 
 %preun
 if [ "$1" = "0" ]; then
