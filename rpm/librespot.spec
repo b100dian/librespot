@@ -91,12 +91,17 @@ export NM="gcc-nm"
 export RANLIB="gcc-ranlib"
 export PKG_CONFIG="pkg-config"
 
-export RUSTFLAGS="-Clink-arg=-Wl,-z,relro,-z,now -Ccodegen-units=1 %{?rustflags}"
-export CARGO_INCREMENTAL=0
+#export RUSTFLAGS="-Clink-arg=-Wl,-z,relro,-z,now -Ccodegen-units=1 %{?rustflags}"
+#export CARGO_INCREMENTAL=0
+#
+#export CRATE_CC_NO_DEFAULTS=1
 
-export CRATE_CC_NO_DEFAULTS=1
+export CARGOFLAGS=" --offline"
+export CARGO_NET_OFFLINE=1"
+export CARGO_BUILD_TARGET=armv7-unknown-linux-gnueabihf
+export CARGO_CFG_TARGET_ARCH=arm"
 
-cargo build --offline --verbose --release --features "pulseaudio-backend" --target-dir=%{BUILD_DIR}
+cargo build --offline --verbose --release --features "alsa-backend pulseaudio-backend" --target-dir=%{BUILD_DIR}
 
 %install
 mkdir -p %{buildroot}/%{_bindir}
