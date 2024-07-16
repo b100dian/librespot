@@ -81,6 +81,7 @@ export CROSS_COMPILE=%SB2_TARGET
 export SB2_RUST_EXECVP_SHIM="/usr/bin/env LD_PRELOAD=/usr/lib/libsb2/libsb2.so.1 /usr/bin/env"
 export SB2_RUST_USE_REAL_EXECVP=Yes
 export SB2_RUST_USE_REAL_FN=Yes
+export SB2_RUST_NO_SPAWNVP=Yes
 %endif
 
 export CC=gcc
