@@ -7,14 +7,12 @@ URL:            https://github.com/librespot-org/librespot
 Source0:        https://github.com/librespot-org/librespot/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 Source100:      vendor.tar.xz
-Source200:      librespot-patches.tar.gz
 
 BuildRequires:  rust
 BuildRequires:  cargo
 BuildRequires:  alsa-lib-devel
 BuildRequires:  pulseaudio-devel
-BuildRequires:  alsa-lib
-BuildRequires:  pulseaudio
+Requires:       alsa-lib
 Requires:       pulseaudio
 
 %description
@@ -22,9 +20,9 @@ librespot is an open source client library for Spotify. It enables applications 
 
 Note: librespot only works with Spotify Premium
 
-%define BUILD_DIR "$PWD"/target
+%define BUILD_DIR "$PWD"/upstream/target
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{version}/upstream
 
 %ifarch %arm32
 %define SB2_TARGET armv7-unknown-linux-gnueabihf
@@ -135,15 +133,3 @@ fi
 %config(noreplace) %{_sysconfdir}/systemd/user/librespot.service
 
 %changelog
-* Fri Feb 22 2019 wdehoog <jdoe@example.com> - 0.0.5
-- include uri fix from librespot-org (issue 288 which caused librespot to stop working)
-- set device type to smartphone in systemd service file
-* Thu Jan 10 2019 wdehoog <jdoe@example.com> - 0.0.4
-- use latest master branch but without proto-rust update since rust version
-  available on OBS cannot compile that.
-* Fri Jan 4 2019 wdehoog <jdoe@example.com> - 0.0.3
-- use rpassword crate 2.1.0 to be able to read pasword from stdin
-* Fri Jul 21 2018 wdehoog <jdoe@example.com> - 0.0.1
-- config and systemd stuff
-- patched rust-mdns for 'old' kernel
-- initial packaging
