@@ -5,6 +5,7 @@
 
 # Bitrate, one of 96 (low quality), 160 (default quality), or 320 (high quality)
 #BITRATE="160"
+BITRATE="320"
 
 # Additional command line arguments for librespot can be set below.
 # See `librespot -h` for more info. Make sure whatever arguments you specify
@@ -21,12 +22,13 @@
 # This will make librespot log in and make it visible through the web-api.
 # however then the password will show up in the process list and service status.
 #OPTIONS="--username <USERNAME> --password <PASSWORD>"
+OPTIONS=" --system-cache /home/defaultuser/.cache/librespot/ "
 #
 # Only specifying the username will make librespot ask for the password.
 # If the cache is enabled the credentials will be stored there.
 # So if you start in once from the command line like:
 #
-#   librespot --cache /home/nemo/.cache/librespot --username <USERNAME> -n test 
+#   librespot --cache /home/nemo/.cache/librespot --username <USERNAME> -n test
 #
 # the service can use the cached credentials without showing it in the process or
 # service lists.
@@ -34,11 +36,12 @@
 # Uncomment to use a cache for downloaded audio files. Cache is disabled by
 # default. It's best to leave this as-is if you want to use it, since
 # permissions are properly set on the directory `/var/cache/librespot'.
-CACHE_ARGS="--cache /home/nemo/.cache/librespot"
+CACHE_ARGS="--cache /home/defaultuser/.cache/librespot"
 
 # By default, the volume normalization is enabled, add alternative volume
 # arguments here if you'd like, but these should be fine.
 #VOLUME_ARGS="--enable-volume-normalisation --linear-volume --initial-volume=100"
+VOLUME_ARGS="--enable-volume-normalisation --initial-volume=100 --format F32"
 
 # Backend could be set to pipe here, but it's for very advanced use cases of
 # librespot, so you shouldn't need to change this under normal circumstances.
