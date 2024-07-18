@@ -101,7 +101,7 @@ export CARGO_NET_OFFLINE=1"
 export CARGO_BUILD_TARGET=armv7-unknown-linux-gnueabihf
 export CARGO_CFG_TARGET_ARCH=arm"
 
-cargo build --offline --verbose --release --features "alsa-backend pulseaudio-backend" --target-dir=%{BUILD_DIR}
+cargo build --offline -j1 --release --features "alsa-backend pulseaudio-backend" --target-dir=%{BUILD_DIR}
 
 %install
 mkdir -p %{buildroot}/%{_bindir}
