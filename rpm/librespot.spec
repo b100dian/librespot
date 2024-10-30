@@ -1,5 +1,5 @@
 Name:           librespot
-Version:        0.4.2
+Version:        0.5.0
 Release:        0
 Summary:        librespot is an open source client library for Spotify.
 License:        MIT
@@ -10,6 +10,7 @@ Source100:      vendor.tar.xz
 
 BuildRequires:  rust
 BuildRequires:  cargo
+BuildRequires:  cmake
 BuildRequires:  alsa-lib-devel
 BuildRequires:  pulseaudio-devel
 Requires:       alsa-lib
