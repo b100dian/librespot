@@ -7,10 +7,12 @@ URL:            https://github.com/librespot-org/librespot
 Source0:        %{name}-%{version}.tar.gz
 
 Source100:      vendor.tar.xz
+Patch0:         001-aws_lc_rs-feature-bindgen.patch
 
 BuildRequires:  rust
 BuildRequires:  cargo
 BuildRequires:  cmake
+BuildRequires:  clang-libs
 BuildRequires:  alsa-lib-devel
 BuildRequires:  pulseaudio-devel
 Requires:       alsa-lib
@@ -23,7 +25,7 @@ Note: librespot only works with Spotify Premium
 
 %define BUILD_DIR "$PWD"/upstream/target
 %prep
-%setup a1 -q -n %{name}-%{version}/upstream
+%autosetup a1 -n %{name}-%{version}/upstream
 
 %ifarch %arm32
 %define SB2_TARGET armv7-unknown-linux-gnueabihf
